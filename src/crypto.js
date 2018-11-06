@@ -1,5 +1,5 @@
 const createHash = require('create-hash')
-const sha3 = require('js-sha3').sha3_256
+const sha3_256 = require('js-sha3').sha3_256
 
 function ripemd160 (buffer) {
   return createHash('rmd160').update(buffer).digest()
@@ -14,7 +14,7 @@ function sha256 (buffer) {
 }
 
 function sha3 (buffer) {
-  return sha3.create().update(buffer).digest()
+  return sha3_256.create().update(buffer).digest()
 }
 
 function hash160 (buffer) {
@@ -23,7 +23,7 @@ function hash160 (buffer) {
 
 // TODO plug in
 function hash360 (buffer) {
-  return ripemd160(sha3(buffer))
+  return ripemd160(sha3_256(buffer))
 }
 
 function hash256 (buffer) {
@@ -31,7 +31,7 @@ function hash256 (buffer) {
 }
 
 function hash3 (buffer) {
-  return sha3(sha3(buffer))
+  return sha3_256(sha3_256(buffer))
 }
 
 module.exports = {
